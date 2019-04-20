@@ -31,7 +31,7 @@ server.get('/games', (req, res) => res.status(200).json({ games }))
 server.post('/games', async (req, res) => {
   const { title, genre, releaseYear } = req.body
   if (!title || !genre || !releaseYear)
-    res.status(500).json({ error: 'Please Fill Out All Fields' })
+    res.status(422).json({ error: 'Please Fill Out All Fields' })
   else {
     // adds games
     games.push(req.body)
