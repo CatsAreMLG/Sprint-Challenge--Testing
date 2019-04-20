@@ -34,3 +34,16 @@ describe('get tests', () => {
     })
   })
 })
+describe('post tests', () => {
+  it('should return 201 status code', async () => {
+    const body = {
+      title: 'Golden Eye: 007',
+      genre: 'Shooter',
+      releaseYear: '1990'
+    }
+    const res = await request(server)
+      .post('/games')
+      .send(body)
+    expect(res.statusCode).toBe(201)
+  })
+})
