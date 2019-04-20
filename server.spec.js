@@ -46,4 +46,21 @@ describe('post tests', () => {
       .send(body)
     expect(res.statusCode).toBe(201)
   })
+  it('should return 422 status code on incomplete', async () => {
+    const incomplete = {
+      title: 'Golden Eye: 007',
+      genre: 'Shooter'
+    }
+    const res = await request(server)
+      .post('/games')
+      .send(incomplete)
+    expect(res.statusCode).toBe(422)
+  })
+  it('should return 422 status code on undefined/null', async () => {
+    const undefinedGames = null
+    const res = await request(server)
+      .post('/games')
+      .send(undefinedGames)
+    expect(res.statusCode).toBe(422)
+  })
 })
