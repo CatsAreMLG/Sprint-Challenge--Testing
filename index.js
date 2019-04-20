@@ -26,6 +26,8 @@ const games = [
   }
 ]
 
+server.get('/games', (req, res) => res.status(200).json({ games }))
+
 server.listen(PORT, _ => console.log('Listening on port ' + PORT))
 
 module.exports = server
