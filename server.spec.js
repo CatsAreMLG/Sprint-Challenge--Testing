@@ -37,7 +37,7 @@ describe('get tests', () => {
 describe('post tests', () => {
   it('should return 201 status code', async () => {
     const body = {
-      title: 'Golden Eye: 007',
+      title: 'Golden Eye: 006',
       genre: 'Shooter',
       releaseYear: '1990'
     }
@@ -62,5 +62,16 @@ describe('post tests', () => {
       .post('/games')
       .send(undefinedGames)
     expect(res.statusCode).toBe(422)
+  })
+  it('should return 405 status code on duplicate title', async () => {
+    const duplicate = {
+      title: 'Golden Eye: 006',
+      genre: 'Shooter',
+      releaseYear: '1990'
+    }
+    const res = await request(server)
+      .post('/games')
+      .send(duplicate)
+    expect(res.statusCode).toBe(405)
   })
 })
