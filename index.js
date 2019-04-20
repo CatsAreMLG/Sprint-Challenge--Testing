@@ -28,6 +28,18 @@ const games = [
 
 server.get('/games', (req, res) => res.status(200).json({ games }))
 
+server.post('/games', async (req, res) => {
+  const { title, genre, releaseYear } = req.body
+  if (!title || !genre || !releaseYear)
+    res.status(500).json({ error: 'Please Fill Out All Fields' })
+  else {
+    // adds games
+    games.push(req.body)
+    // sends id of game added
+    res.status(201).json(games.length - 1)
+  }
+})
+
 server.listen(PORT, _ => console.log('Listening on port ' + PORT))
 
 module.exports = server
