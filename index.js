@@ -27,6 +27,9 @@ const games = [
 ]
 
 server.get('/games', (req, res) => res.status(200).json({ games }))
+server.get('/nogames', (req, res) =>
+  res.status(200).json({ games: games.filter() })
+)
 
 server.post('/games', async (req, res) => {
   const { title, genre, releaseYear } = req.body
